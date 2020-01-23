@@ -2,7 +2,7 @@ import sys
 sys.stdin = open('bj2529.txt', 'r')
 
 import itertools
-for x in range(3):
+for x in range(1):
     N = int(input())
     array = list(map(str, input().split()))
     lists = list(itertools.permutations(range(0, 10), N+1))
@@ -39,5 +39,5 @@ for x in range(3):
                 res_min += str(num)
             break
 
-    print(res_min)
     print(res_max)
+    print(res_min)
