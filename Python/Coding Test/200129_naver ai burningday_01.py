@@ -101,27 +101,27 @@ for case in range(4):
     # return 0
 
 
-# # 현지 풀이 (itertools) 수정
-# for case in range(4):
-#     A = list(map(str, input().split()))
-#     # t = [0]*depth
-#     for depth in range(len(A)-1, -1, -1): # 길이가 긴 최대의 경우를 찾아내면 되므로 index 거꾸로 접근
-#         candis = list(itertools.combinations(A, depth))
-#         # print(candis) # [('co', 'dil'), ('co', 'ity'), ('dil', 'ity')]
-#         # codil과 dilco를 별도로 분석할 필요 없음(글자최대길이만 찾아내면 되니까)
-#         for can in candis: # can은 ('co', 'dil')
-#             once = []
-#             for c in can: # c는 co
-#                 for i in c: # i는 c, o
-#                     if i in once:
-#                         break
-#                     once.append(i)
-#                 else:
-#                     continue
-#                 break
+# ## 지희 언니 풀이 (함수 활용) -  추후 다시 확인
+# max_len = 0
+
+# def check(s):
+#         for i in range(len(s) - 1):
+#             for j in range(i, len(s)):
+#                 if s[i] == s[j]:
+#                     return False
+#         return True
+
+# def comb(k, l, A, s=''):
+#         global max_len
+#         if k == l:
+#             if max_len < len(s):
+#                 max_len = len(s)
+#         else:
+#             if check(s+A[k]):
+#                 comb(k+1, l, A, s+A[k])
 #             else:
-#                 # print(once)
-#                 print(len(once))
-#                 break
-#                 # return len(once)
-#     # return 0
+#                 comb(k+1, l, A, s)
+
+# def solution(A):
+#     comb(0, len(A), A)
+#     return max_len
